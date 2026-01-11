@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+    
+    --color-travelo-navy: #1e293b;
+    --color-travelo-dark: #111827;
+    --color-travelo-teal: #14b8a6;
+    --color-travelo-white: #ffffff;
+    --color-travelo-gray: #9ca3af;
+    --color-travelo-light: #f3f4f6;
+    
+    --color-brand-50: #f5f3ff;
+    --color-brand-100: #ede9fe;
+    --color-brand-200: #ddd6fe;
+    --color-brand-300: #c4b5fd;
+    --color-brand-400: #a78bfa;
+    --color-brand-500: #8b5cf6;
+    --color-brand-600: #7c3aed;
+    --color-brand-700: #6d28d9;
+    --color-brand-800: #5b21b6;
+    --color-brand-900: #4c1d95;
+    --color-brand-950: #2e1065;
+    
+    --animate-fade-in: fadeIn 0.5s ease-out;
+    --animate-slide-up: slideUp 0.5s ease-out;
+    --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+        0% { transform: translateY(20px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+    }
+}
+
+/* ---------------- BASE ---------------- */
+@layer base {
+    body {
+        background-color: white;
+        color: rgb(17 24 39); /* gray-900 */
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+/* -------------- UTILITIES ------------- */
+@utility btn-pill {
+    @apply px-6 py-2 rounded-full font-medium transition-all duration-300;
+}
+
+@utility container-custom {
+    @apply max-w-7xl mx-auto px-4;
+}
+
+@media (min-width: 640px) {
+    .container-custom {
+        @apply px-6;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container-custom {
+        @apply px-8;
+    }
+}
+
+@utility input-pill {
+    @apply bg-gray-100 rounded-full px-6 py-3 text-gray-900 border-none transition-all;
+}
+
+/* -------------- COMPONENTS ------------- */
+@layer components {
+
+  /* Buttons */
+  .btn-primary {
+    @apply bg-white text-travelo-dark btn-pill;
+  }
+
+  .btn-outline {
+    @apply border border-white text-white btn-pill;
+  }
+
+  .btn-dark {
+    @apply bg-travelo-dark text-white btn-pill;
+  }
+}
