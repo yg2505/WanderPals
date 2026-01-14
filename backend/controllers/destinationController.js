@@ -1,35 +1,35 @@
 const destinations = [
     {
         id: 1,
-        name: "Eiffel Tower",
-        location: "Paris, France",
-        description: "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower.",
-        image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1000&q=80",
-        bestTimeToVisit: "April–June, September–October",
+        name: "Varanasi Ghats",
+        location: "Varanasi, India",
+        description: "Stretching along the sacred River Ganges, the Varanasi Ghats are a spiritual and cultural hub where rituals, ceremonies, and daily life blend into a timeless experience.",
+        image: "https://images.unsplash.com/photo-1706186839147-0d708602587b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        bestTimeToVisit: "October–March"
     },
     {
         id: 2,
-        name: "Taj Mahal",
-        location: "Agra, India",
-        description: "An immense mausoleum of white marble, built in Agra between 1631 and 1648 by order of the Mughal emperor Shah Jahan in memory of his favourite wife, the Taj Mahal is the jewel of Muslim art in India.",
-        image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-        bestTimeToVisit: "October–March",
+        name: "Jaipur City Palace",
+        location: "Jaipur, India",
+        description: "A magnificent blend of Rajasthani and Mughal architecture, the City Palace in Jaipur showcases royal courtyards, museums, and beautifully preserved palaces that reflect the grandeur of Rajasthan’s history.",
+        image: "https://images.unsplash.com/photo-1603262110263-fb0112e7cc33?auto=format&fit=crop&w=1000&q=80",
+        bestTimeToVisit: "October–March"
     },
     {
         id: 3,
-        name: "Machu Picchu",
-        location: "Cusco Region, Peru",
-        description: "Machu Picchu is an Incan citadel set high in the Andes Mountains in Peru, above the Urubamba River valley. Built in the 15th century and later abandoned, it’s renowned for its sophisticated dry-stone walls.",
-        image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-        bestTimeToVisit: "May–September"
+        name: "Meenakshi Temple",
+        location: "Madurai, India",
+        description: "An ancient Hindu temple famous for its towering gopurams covered in colorful sculptures, Meenakshi Temple is a vibrant center of South Indian culture and devotion.",
+        image: "https://images.unsplash.com/photo-1732883247945-896e63ee644a?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWVlbmFrc2hpJTIwdGVtcGxlfGVufDB8fDB8fHww",
+        bestTimeToVisit: "October–March"
     },
     {
         id: 4,
-        name: "Santorini",
-        location: "Aegean Sea, Greece",
-        description: "Santorini is one of the Cyclades islands in the Aegean Sea. It was devastated by a volcanic eruption in the 16th century BC, forever shaping its rugged landscape.",
-        image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?q=80&w=2038&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-        bestTimeToVisit: "May–June, September"
+        name: "Ranthambore National Park",
+        location: "Rajasthan, India",
+        description: "One of India’s most famous wildlife reserves, Ranthambore is known for its Bengal tigers, scenic lakes, and ancient ruins scattered throughout the forest.",
+        image: "https://images.unsplash.com/photo-1633939380243-2601544191c9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fHJhbnRoYW1ib3JlJTIwbmF0aW9uYWwlMjBwYXJrfGVufDB8fDB8fHww",
+        bestTimeToVisit: "October–April"
     },
     {
         id: 5,
@@ -97,11 +97,11 @@ const destinations = [
     },
     {
         id: 13,
-        name: "Jaipur City Palace",
-        location: "Jaipur, India",
-        description: "A magnificent blend of Rajasthani and Mughal architecture, the City Palace in Jaipur showcases royal courtyards, museums, and beautifully preserved palaces that reflect the grandeur of Rajasthan’s history.",
-        image: "https://images.unsplash.com/photo-1603262110263-fb0112e7cc33?auto=format&fit=crop&w=1000&q=80",
-        bestTimeToVisit: "October–March"
+        name: "Taj Mahal",
+        location: "Agra, India",
+        description: "An immense mausoleum of white marble, built in Agra between 1631 and 1648 by order of the Mughal emperor Shah Jahan in memory of his favourite wife, the Taj Mahal is the jewel of Muslim art in India.",
+        image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        bestTimeToVisit: "October–March",
     },
     {
         id: 14,
@@ -129,12 +129,12 @@ const destinations = [
     },
     {
         id: 17,
-        name: "Varanasi Ghats",
-        location: "Varanasi, India",
-        description: "Stretching along the sacred River Ganges, the Varanasi Ghats are a spiritual and cultural hub where rituals, ceremonies, and daily life blend into a timeless experience.",
-        image: "https://images.unsplash.com/photo-1706186839147-0d708602587b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        bestTimeToVisit: "October–March"
-    }, 
+        name: "Eiffel Tower",
+        location: "Paris, France",
+        description: "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower.",
+        image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1000&q=80",
+        bestTimeToVisit: "April–June, September–October",
+    },
     {
         id: 18,
         name: "Red Fort",
@@ -161,20 +161,21 @@ const destinations = [
     },
     {
         id: 21,
-        name: "Meenakshi Temple",
-        location: "Madurai, India",
-        description: "An ancient Hindu temple famous for its towering gopurams covered in colorful sculptures, Meenakshi Temple is a vibrant center of South Indian culture and devotion.",
-        image: "https://images.unsplash.com/photo-1732883247945-896e63ee644a?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWVlbmFrc2hpJTIwdGVtcGxlfGVufDB8fDB8fHww",
-        bestTimeToVisit: "October–March"
+        name: "Machu Picchu",
+        location: "Cusco Region, Peru",
+        description: "Machu Picchu is an Incan citadel set high in the Andes Mountains in Peru, above the Urubamba River valley. Built in the 15th century and later abandoned, it’s renowned for its sophisticated dry-stone walls.",
+        image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        bestTimeToVisit: "May–September"
     },
     {
         id: 22,
-        name: "Ranthambore National Park",
-        location: "Rajasthan, India",
-        description: "One of India’s most famous wildlife reserves, Ranthambore is known for its Bengal tigers, scenic lakes, and ancient ruins scattered throughout the forest.",
-        image: "https://images.unsplash.com/photo-1633939380243-2601544191c9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fHJhbnRoYW1ib3JlJTIwbmF0aW9uYWwlMjBwYXJrfGVufDB8fDB8fHww",
-        bestTimeToVisit: "October–April"
+        name: "Santorini",
+        location: "Aegean Sea, Greece",
+        description: "Santorini is one of the Cyclades islands in the Aegean Sea. It was devastated by a volcanic eruption in the 16th century BC, forever shaping its rugged landscape.",
+        image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?q=80&w=2038&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+        bestTimeToVisit: "May–June, September"
     },
+    
     {
         id: 23,
         name: "Backwaters of Alleppey",

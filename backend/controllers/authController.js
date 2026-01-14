@@ -32,6 +32,7 @@ const registerUser = async (req, res) => {
         password: hashedPassword,
         age: req.body.age,
         country: req.body.country,
+        state: req.body.state,
         avatar: req.body.avatar, // Allow setting avatar on registration
         bio: req.body.bio,
         languages: req.body.languages,
@@ -47,7 +48,9 @@ const registerUser = async (req, res) => {
             avatar: user.avatar,
             bio: user.bio,
             age: user.age,
+            age: user.age,
             country: user.country,
+            state: user.state,
             languages: user.languages,
             travelStyle: user.travelStyle,
             interests: user.interests,
@@ -73,7 +76,9 @@ const loginUser = async (req, res) => {
             avatar: user.avatar,
             bio: user.bio,
             age: user.age,
+            age: user.age,
             country: user.country,
+            state: user.state,
             travelStyle: user.travelStyle,
             languages: user.languages,
             interests: user.interests,
@@ -97,7 +102,9 @@ const updateProfile = async (req, res) => {
         user.bio = req.body.bio || user.bio;
         user.avatar = req.body.avatar || user.avatar;
         user.age = req.body.age || user.age;
+        user.age = req.body.age || user.age;
         user.country = req.body.country || user.country;
+        user.state = req.body.state || user.state;
         user.travelStyle = req.body.travelStyle || user.travelStyle;
         // For arrays, if provided, replace. If not, keep existing.
         // Or could allow simpler logic. Let's assume if it's sent, we update it.
@@ -118,7 +125,9 @@ const updateProfile = async (req, res) => {
             avatar: updatedUser.avatar,
             bio: updatedUser.bio,
             age: updatedUser.age,
+            age: updatedUser.age,
             country: updatedUser.country,
+            state: updatedUser.state,
             languages: updatedUser.languages,
             travelStyle: updatedUser.travelStyle,
             interests: updatedUser.interests,

@@ -75,7 +75,7 @@ const Navbar = () => {
             {isMobileMenuOpen && (
                 <div className="md:hidden absolute top-full left-0 w-full bg-travelo-dark border-t border-gray-800 p-4 flex flex-col space-y-4 shadow-xl">
                     <Link to={user ? "/dashboard" : "/"} className={linkClass} onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-                    <Link to="/" className={linkClass} onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+
                     {user && (
                         <>
                             <Link to="/create-trip" className={linkClass} onClick={() => setIsMobileMenuOpen(false)}>Create Trip</Link>

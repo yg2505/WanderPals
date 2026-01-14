@@ -7,7 +7,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import CreateTrip from "./pages/CreateTrip";
 import Chat from "./pages/Chat";
-import Trips from "./pages/Trips";
+import Explore from "./pages/Explore";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
 import { useContext } from "react";
@@ -58,7 +58,7 @@ const AppContent = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="/explore" element={<Trips />} />
+        <Route path="/explore" element={<Explore />} />
 
         <Route path="/profile" element={
           <ProtectedRoute>

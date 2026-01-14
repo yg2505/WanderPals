@@ -3,37 +3,41 @@ import { MapPin, Calendar, Star, Plane } from "lucide-react";
 const TripCard = ({ trip }) => {
     // Generate a random color for the plane icon background
     const getRandomPlaneColor = () => {
-        const colors = [
-            "bg-blue-100 text-blue-600",
-            "bg-purple-100 text-purple-600",
-            "bg-green-100 text-green-600",
-            "bg-orange-100 text-orange-600",
-            "bg-rose-100 text-rose-600",
-            "bg-teal-100 text-teal-600",
-            "bg-indigo-100 text-indigo-600"
-        ];
-        const index = trip._id ? trip._id.charCodeAt(trip._id.length - 1) % colors.length : Math.floor(Math.random() * colors.length);
-        return colors[index];
+    const colors = [
+        "bg-blue-700 text-blue-100",
+        "bg-blue-800 text-blue-200",
+        "bg-sky-700 text-sky-100",
+        "bg-sky-800 text-sky-200",
+        "bg-indigo-700 text-indigo-100",
+        "bg-indigo-800 text-indigo-200",
+        "bg-slate-700 text-slate-100"
+    ];
+    const index = trip._id
+        ? trip._id.charCodeAt(trip._id.length - 1) % colors.length
+        : Math.floor(Math.random() * colors.length);
+    return colors[index];
     };
 
     const getRandomGradient = () => {
-        const gradients = [
-            "from-purple-300 to-indigo-300",
-            "from-blue-300 to-cyan-300",
-            "from-teal-300 to-emerald-300",
-            "from-orange-300 to-pink-300",
-            "from-red-300 to-rose-300",
-            "from-yellow-300 to-orange-300"
-        ];
-        const index = trip._id ? trip._id.charCodeAt(trip._id.length - 1) % gradients.length : Math.floor(Math.random() * gradients.length);
-        return gradients[index];
+    const gradients = [
+        "from-blue-700 to-blue-900",
+        "from-sky-700 to-sky-900",
+        "from-indigo-700 to-indigo-900",
+        "from-slate-700 to-slate-900",
+        "from-blue-800 to-indigo-900",
+        "from-sky-800 to-blue-900"
+    ];
+    const index = trip._id
+        ? trip._id.charCodeAt(trip._id.length - 1) % gradients.length
+        : Math.floor(Math.random() * gradients.length);
+    return gradients[index];
     };
 
     const planeColorClass = getRandomPlaneColor();
     const gradientClass = getRandomGradient();
 
     return (
-        <div className="group relative bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-[420px]">
+        <div className="group relative bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-[420px]">
             {/* TOP PART: Image or Gradient */}
             <div className="h-48 relative overflow-hidden">
                 {trip.image ? (
@@ -83,10 +87,6 @@ const TripCard = ({ trip }) => {
                         {new Date(trip.startDate).toLocaleDateString()}
                     </div>
 
-                    <div className="flex items-center space-x-1 text-yellow-400">
-                        <Star className="w-3 h-3 fill-current" />
-                        <span className="text-xs font-bold text-gray-700">4.8</span>
-                    </div>
                 </div>
             </div>
         </div>

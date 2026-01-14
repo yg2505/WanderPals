@@ -73,8 +73,45 @@ const getMatches = async (req, res) => {
 // @access  Public
 const getAllTrips = async (req, res) => {
     try {
-        const trips = await Trip.find({}).sort({ createdAt: -1 }).populate('userId', 'name email avatar');
-        res.status(200).json(trips);
+        const { page = 1, limit = 9, sort, destination, minBudget, maxBudget } = req.query;
+
+        // Filtering
+        const query = {};
+        if (destination) {
+            query.destination = { $regex: destination, $options: 'i' };
+        }
+        if (minBudget || maxBudget) {
+            query.budget = {};
+            if (minBudget) query.budget.$gte = Number(minBudget);
+            if (maxBudget) query.budget.$lte = Number(maxBudget);
+        }
+
+        // Sorting
+        let sortOption = { createdAt: -1 }; // Default
+        if (sort === 'price_asc') sortOption = { budget: 1 };
+        if (sort === 'price_desc') sortOption = { budget: -1 };
+        if (sort === 'date_asc') sortOption = { startDate: 1 };
+        if (sort === 'date_desc') sortOption = { startDate: -1 };
+
+        // Pagination
+        const pageNumber = Number(page);
+        const limitNumber = Number(limit);
+        const skip = (pageNumber - 1) * limitNumber;
+
+        const trips = await Trip.find(query)
+            .sort(sortOption)
+            .skip(skip)
+            .limit(limitNumber)
+            .populate('userId', 'name email avatar');
+
+        const total = await Trip.countDocuments(query);
+
+        res.status(200).json({
+            trips,
+            page: pageNumber,
+            pages: Math.ceil(total / limitNumber),
+            total
+        });
     } catch (error) {
         res.status(500).json({ message: 'Server Error' });
     }

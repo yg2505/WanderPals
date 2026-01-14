@@ -49,12 +49,13 @@ const Dashboard = () => {
                     <div className="z-10">
 
                         <h1 className="text-6xl lg:text-7xl font-bold leading-tight mb-6">
-                            Make your travel <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">memorable</span>
+                            Experience travel <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">together</span>
                         </h1>
 
                         <p className="text-gray-400 max-w-md text-lg leading-relaxed mb-10">
-                            Apparently the he and with has, into. Into welcoming her pros that hazardous the project recently of from unable of.
+                        Connect with like-minded travelers, plan your journey together,
+                        and experience destinations in a more meaningful way.
                         </p>
 
                         <Link to="/explore" className="bg-white text-travelo-dark px-10 py-4 rounded-full font-bold hover:bg-gray-100 transition-all inline-flex items-center group">

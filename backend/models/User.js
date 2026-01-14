@@ -27,10 +27,17 @@ const userSchema = new mongoose.Schema({
         maxLength: 200
     },
     age: {
-        type: Number
+        type: Number,
+        required: true
     },
     country: {
         type: String,
+        required: true,
+        default: ''
+    },
+    state: {
+        type: String,
+        required: true,
         default: ''
     },
     languages: {

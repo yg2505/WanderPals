@@ -14,7 +14,9 @@ const Register = () => {
         email: "",
         password: "",
         age: "",
+        age: "",
         country: "",
+        state: "",
         avatar: "",
         bio: "",
         travelStyle: "Explorer",
@@ -35,7 +37,10 @@ const Register = () => {
             }
         }
         if (step === 2) {
-            // Optional validation for step 2 if needed
+            if (!formData.age || !formData.country || !formData.state) {
+                setError("Please fill in all required fields.");
+                return;
+            }
         }
         setStep(step + 1);
     };
@@ -189,7 +194,7 @@ const Register = () => {
                             <div className="space-y-4 animate-fade-in">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-2">
-                                        <label className="text-sm font-medium text-gray-700 ml-1">Age</label>
+                                        <label className="text-sm font-medium text-gray-700 ml-1">Age *</label>
                                         <div className="relative group">
                                             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                                 <Smile className="h-5 w-5 text-gray-400 group-focus-within:text-travelo-dark transition-colors" />
@@ -197,6 +202,7 @@ const Register = () => {
                                             <input
                                                 type="number"
                                                 name="age"
+                                                required
                                                 className="input-field-with-icon pl-12"
                                                 placeholder="25"
                                                 value={formData.age}
@@ -205,7 +211,7 @@ const Register = () => {
                                         </div>
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-sm font-medium text-gray-700 ml-1">Country</label>
+                                        <label className="text-sm font-medium text-gray-700 ml-1">Country *</label>
                                         <div className="relative group">
                                             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                                 <Globe className="h-5 w-5 text-gray-400 group-focus-within:text-travelo-dark transition-colors" />
@@ -213,9 +219,27 @@ const Register = () => {
                                             <input
                                                 type="text"
                                                 name="country"
+                                                required
                                                 className="input-field-with-icon pl-12"
                                                 placeholder="USA"
                                                 value={formData.country}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-span-2 space-y-2">
+                                        <label className="text-sm font-medium text-gray-700 ml-1">State/Province *</label>
+                                        <div className="relative group">
+                                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                                <Map className="h-5 w-5 text-gray-400 group-focus-within:text-travelo-dark transition-colors" />
+                                            </div>
+                                            <input
+                                                type="text"
+                                                name="state"
+                                                required
+                                                className="input-field-with-icon pl-12"
+                                                placeholder="California"
+                                                value={formData.state}
                                                 onChange={handleChange}
                                             />
                                         </div>
