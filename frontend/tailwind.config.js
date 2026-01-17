@@ -13,6 +13,7 @@ export default {
                 travelo: {
                     navy: '#1e293b', // Slate 800 - Main Dark
                     dark: '#111827', // Gray 900 - Hero / Background
+                    primary: '#06b6d4', // Cyan 500 - Primary Accent
                     teal: '#14b8a6', // Teal 500 - Accents (Optional, guessing from some images)
                     white: '#ffffff',
                     gray: '#9ca3af',

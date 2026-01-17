@@ -6,7 +6,7 @@ import TripDetailsModal from "../components/TripDetailsModal";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
-import { Search, Filter, ArrowLeft, ArrowRight, X, ChevronDown } from "lucide-react";
+import { Search, Filter, ArrowLeft, ArrowRight, X, ChevronDown, Sparkles, MapPin, TrendingUp } from "lucide-react";
 
 const Explore = () => {
     const [trips, setTrips] = useState([]);
@@ -104,100 +104,91 @@ const Explore = () => {
         }
     };
 
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const handlePageChange = (newPage) => {
+        setPage(newPage);
+        scrollToTop();
+    };
+
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-900">
             <Navbar />
-            <div className="container-custom py-24">
-                <div className="text-center mb-16">
-                    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                        Travel Together
-                    </h1>
-                    <p className="text-xl text-gray-500 max-w-2xl mx-auto">
-                        Find trips, meet travelers, and explore together.
-                    </p>
+
+            {/* Hero Section */}
+            <div className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-24 pb-20">
+                {/* Animated Background Elements */}
+                <div className="absolute inset-0 overflow-hidden">
+                    <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+                    <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
                 </div>
-                {/* Search and Filters Section */}
-                <div className="mb-10 max-w-6xl mx-auto">
-                    <div className="flex flex-col md:flex-row gap-4 mb-6">
-                        {/* Search Bar */}
-                        <div className="flex-1 relative group">
-                            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 group-focus-within:text-travelo-dark transition-colors" />
-                            <input
-                                type="text"
-                                name="destination"
-                                placeholder="Search destinations..."
-                                value={filters.destination}
-                                onChange={handleFilterChange}
-                                className="w-full pl-12 pr-4 py-4 rounded-2xl border-0 bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] ring-1 ring-gray-100 focus:ring-2 focus:ring-travelo-dark transition-all duration-300 placeholder-gray-400 text-gray-800 font-medium"
-                            />
+
+                <div className="container-custom relative z-10">
+                    <div className="text-center max-w-4xl mx-auto">
+                        <div className="inline-flex items-center gap-2 bg-cyan-400/10 border border-cyan-400/20 rounded-full px-4 py-2 mb-6">
+                            <Sparkles className="w-4 h-4 text-cyan-400" />
+                            <span className="text-sm font-semibold text-cyan-400">Discover Your Next Adventure</span>
                         </div>
 
-                        {/* Mobile Filter Toggle */}
-                        <button
-                            onClick={() => setShowFilters(!showFilters)}
-                            className="md:hidden flex items-center justify-center gap-2 px-6 py-4 bg-white rounded-2xl shadow-sm font-bold text-gray-700 active:scale-95 transition-transform"
-                        >
-                            <Filter className="h-5 w-5" /> Filters
-                        </button>
+                        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
+                            Explore <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Amazing</span>
+                            <br />Travel Experiences
+                        </h1>
 
-                        {/* Sort Dropdown - Desktop */}
-                        <div className="hidden md:block relative group">
-                            <select
-                                name="sort"
-                                value={filters.sort}
-                                onChange={handleFilterChange}
-                                className="appearance-none h-full bg-white px-6 py-4 pr-12 rounded-2xl border-0 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] ring-1 ring-gray-100 focus:ring-2 focus:ring-travelo-dark cursor-pointer font-bold text-gray-700 min-w-[200px] outline-none transition-all duration-300"
-                            >
-                                <option value="newest">Newest First</option>
-                                <option value="price_asc">Price: Low to High</option>
-                                <option value="price_desc">Price: High to Low</option>
-                                <option value="date_asc">Date: Earliest</option>
-                                <option value="date_desc">Date: Latest</option>
-                            </select>
-                            <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none group-hover:text-travelo-dark transition-colors" />
+                        <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8">
+                            Connect with fellow travelers, discover new destinations, and create unforgettable memories together.
+                        </p>
+
+                        {/* Quick Stats */}
+                        <div className="flex flex-wrap justify-center gap-8 mt-12">
+                            <div className="text-center">
+                                <div className="text-3xl font-bold text-cyan-400 mb-1">{trips.length}+</div>
+                                <div className="text-sm text-gray-500">Active Trips</div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-3xl font-bold text-cyan-400 mb-1">50+</div>
+                                <div className="text-sm text-gray-500">Destinations</div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-3xl font-bold text-cyan-400 mb-1">1000+</div>
+                                <div className="text-sm text-gray-500">Travelers</div>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    {/* Filter Panel */}
-                    <div className={`bg-white rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] p-8 mb-8 transition-all duration-500 ease-in-out border border-gray-100 ${showFilters ? 'block opacity-100 translate-y-0' : 'hidden md:block opacity-0 md:opacity-100 md:translate-y-0 -translate-y-4'}`}>
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-end">
-                            <div className="space-y-3">
-                                <label className="block text-sm font-bold text-gray-700 tracking-wide uppercase">Min Budget</label>
-                                <div className="relative group">
-                                    <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-travelo-dark transition-colors font-medium">₹</span>
+            <div className="container-custom py-16">
+                {/* Search and Filters Section */}
+                <div className="mb-12 max-w-6xl mx-auto">
+                    {/* Main Search Bar */}
+                    <div className="bg-gray-800 rounded-3xl p-6 shadow-2xl border border-gray-700 mb-6">
+                        <div className="flex flex-col md:flex-row gap-4">
+                            {/* Search Input */}
+                            <div className="flex-1 relative group">
+                                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="relative">
+                                    <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5 group-focus-within:text-cyan-400 transition-colors z-10" />
                                     <input
-                                        type="number"
-                                        name="minBudget"
-                                        value={filters.minBudget}
+                                        type="text"
+                                        name="destination"
+                                        placeholder="Where do you want to go?"
+                                        value={filters.destination}
                                         onChange={handleFilterChange}
-                                        className="w-full pl-8 pr-4 py-3 rounded-xl bg-gray-50 border-transparent focus:bg-white focus:ring-2 focus:ring-travelo-dark focus:border-transparent transition-all font-medium"
-                                        placeholder="0"
-                                    />
-                                </div>
-                            </div>
-                            <div className="space-y-3">
-                                <label className="block text-sm font-bold text-gray-700 tracking-wide uppercase">Max Budget</label>
-                                <div className="relative group">
-                                    <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-travelo-dark transition-colors font-medium">₹</span>
-                                    <input
-                                        type="number"
-                                        name="maxBudget"
-                                        value={filters.maxBudget}
-                                        onChange={handleFilterChange}
-                                        className="w-full pl-8 pr-4 py-3 rounded-xl bg-gray-50 border-transparent focus:bg-white focus:ring-2 focus:ring-travelo-dark focus:border-transparent transition-all font-medium"
-                                        placeholder="Any"
+                                        className="w-full pl-14 pr-6 py-4 rounded-2xl border-0 bg-gray-700/50 backdrop-blur-sm ring-1 ring-gray-600 focus:ring-2 focus:ring-cyan-500 transition-all duration-300 placeholder-gray-500 text-white font-medium text-lg relative z-0"
                                     />
                                 </div>
                             </div>
 
-                            {/* Mobile Sort - showed only in mobile filter panel */}
-                            <div className="md:hidden space-y-3">
-                                <label className="block text-sm font-bold text-gray-700 tracking-wide uppercase">Sort By</label>
+                            {/* Sort Dropdown - Desktop */}
+                            <div className="hidden md:block relative group min-w-[220px]">
                                 <select
                                     name="sort"
                                     value={filters.sort}
                                     onChange={handleFilterChange}
-                                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border-transparent focus:bg-white focus:ring-2 focus:ring-travelo-dark focus:border-transparent transition-all font-medium"
+                                    className="appearance-none w-full bg-gray-700/50 backdrop-blur-sm px-6 py-4 pr-12 rounded-2xl border-0 ring-1 ring-gray-600 focus:ring-2 focus:ring-cyan-500 cursor-pointer font-semibold text-white outline-none transition-all duration-300"
                                 >
                                     <option value="newest">Newest First</option>
                                     <option value="price_asc">Price: Low to High</option>
@@ -205,81 +196,220 @@ const Explore = () => {
                                     <option value="date_asc">Date: Earliest</option>
                                     <option value="date_desc">Date: Latest</option>
                                 </select>
+                                <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5 pointer-events-none group-hover:text-cyan-400 transition-colors" />
                             </div>
 
-                            <div>
-                                <button
-                                    onClick={clearFilters}
-                                    className="w-full flex items-center justify-center gap-2 px-6 py-3 text-red-500 bg-red-50 hover:bg-red-100 rounded-xl transition-all font-bold hover:shadow-md active:scale-95 duration-200"
-                                >
-                                    <X className="h-4 w-4" /> Clear Filters
-                                </button>
+                            {/* Filter Toggle Button */}
+                            <button
+                                onClick={() => setShowFilters(!showFilters)}
+                                className={`flex items-center justify-center gap-2 px-6 py-4 rounded-2xl font-bold transition-all duration-300 ${showFilters
+                                    ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/50'
+                                    : 'bg-gray-700/50 text-white ring-1 ring-gray-600 hover:ring-cyan-500'
+                                    }`}
+                            >
+                                <Filter className="h-5 w-5" />
+                                <span className="hidden sm:inline">Filters</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Advanced Filters Panel */}
+                    <div className={`transition-all duration-500 ease-in-out overflow-hidden ${showFilters ? 'max-h-96 opacity-100 mb-6' : 'max-h-0 opacity-0'
+                        }`}>
+                        <div className="bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-700">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+                                {/* Min Budget */}
+                                <div className="space-y-3">
+                                    <label className="block text-sm font-bold text-gray-400 tracking-wide uppercase">Min Budget</label>
+                                    <div className="relative group">
+                                        <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-cyan-400 group-focus-within:text-cyan-300 transition-colors font-bold">₹</span>
+                                        <input
+                                            type="number"
+                                            name="minBudget"
+                                            value={filters.minBudget}
+                                            onChange={handleFilterChange}
+                                            className="w-full pl-10 pr-4 py-3.5 rounded-xl bg-gray-700 border-transparent text-white focus:bg-gray-600 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all font-medium"
+                                            placeholder="0"
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Max Budget */}
+                                <div className="space-y-3">
+                                    <label className="block text-sm font-bold text-gray-400 tracking-wide uppercase">Max Budget</label>
+                                    <div className="relative group">
+                                        <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-cyan-400 group-focus-within:text-cyan-300 transition-colors font-bold">₹</span>
+                                        <input
+                                            type="number"
+                                            name="maxBudget"
+                                            value={filters.maxBudget}
+                                            onChange={handleFilterChange}
+                                            className="w-full pl-10 pr-4 py-3.5 rounded-xl bg-gray-700 border-transparent text-white focus:bg-gray-600 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all font-medium"
+                                            placeholder="Any"
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Mobile Sort */}
+                                <div className="md:hidden space-y-3">
+                                    <label className="block text-sm font-bold text-gray-400 tracking-wide uppercase">Sort By</label>
+                                    <select
+                                        name="sort"
+                                        value={filters.sort}
+                                        onChange={handleFilterChange}
+                                        className="w-full px-4 py-3.5 rounded-xl bg-gray-700 border-transparent text-white focus:bg-gray-600 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all font-medium"
+                                    >
+                                        <option value="newest">Newest First</option>
+                                        <option value="price_asc">Price: Low to High</option>
+                                        <option value="price_desc">Price: High to Low</option>
+                                        <option value="date_asc">Date: Earliest</option>
+                                        <option value="date_desc">Date: Latest</option>
+                                    </select>
+                                </div>
+
+                                {/* Clear Button */}
+                                <div>
+                                    <button
+                                        onClick={clearFilters}
+                                        className="w-full flex items-center justify-center gap-2 px-6 py-3.5 text-white bg-gray-700 hover:bg-red-500/20 hover:text-red-400 hover:ring-2 hover:ring-red-500/50 rounded-xl transition-all font-bold active:scale-95 duration-200"
+                                    >
+                                        <X className="h-4 w-4" /> Clear All
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    {/* Active Filters Display */}
+                    {(filters.destination || filters.minBudget || filters.maxBudget) && (
+                        <div className="flex flex-wrap gap-2 mb-6">
+                            <span className="text-sm text-gray-500 font-medium">Active filters:</span>
+                            {filters.destination && (
+                                <span className="inline-flex items-center gap-1 bg-cyan-400/10 border border-cyan-400/30 text-cyan-400 px-3 py-1 rounded-full text-sm font-medium">
+                                    <MapPin className="w-3 h-3" />
+                                    {filters.destination}
+                                </span>
+                            )}
+                            {filters.minBudget && (
+                                <span className="inline-flex items-center gap-1 bg-cyan-400/10 border border-cyan-400/30 text-cyan-400 px-3 py-1 rounded-full text-sm font-medium">
+                                    Min: ₹{filters.minBudget}
+                                </span>
+                            )}
+                            {filters.maxBudget && (
+                                <span className="inline-flex items-center gap-1 bg-cyan-400/10 border border-cyan-400/30 text-cyan-400 px-3 py-1 rounded-full text-sm font-medium">
+                                    Max: ₹{filters.maxBudget}
+                                </span>
+                            )}
+                        </div>
+                    )}
                 </div>
 
-
+                {/* Results Section */}
                 {loading ? (
-                    <div className="flex justify-center items-center h-64">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-travelo-dark"></div>
+                    <div className="flex flex-col justify-center items-center h-96">
+                        <div className="relative">
+                            <div className="animate-spin rounded-full h-16 w-16 border-4 border-gray-700 border-t-cyan-400"></div>
+                            <div className="absolute inset-0 rounded-full bg-cyan-400/20 blur-xl"></div>
+                        </div>
+                        <p className="text-gray-500 mt-6 font-medium">Discovering amazing trips...</p>
                     </div>
                 ) : trips.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                        {trips.map(trip => (
-                            <div key={trip._id} onClick={() => setSelectedTrip(trip)}>
-                                <TripCard trip={trip} />
+                    <>
+                        {/* Results Header */}
+                        <div className="flex items-center justify-between mb-8">
+                            <div>
+                                <h2 className="text-2xl font-bold text-white mb-1">Available Trips</h2>
+                                <p className="text-gray-500">Found {trips.length} trip{trips.length !== 1 ? 's' : ''} for you</p>
                             </div>
-                        ))}
-                    </div>
-                ) : (
-
-                    <div className="text-center py-20 bg-white rounded-2xl border border-gray-100 shadow-sm mx-auto max-w-2xl">
-                        <div className="bg-gray-50 h-20 w-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <Search className="h-8 w-8 text-gray-400" />
+                            <div className="hidden sm:flex items-center gap-2 text-sm text-gray-500">
+                                <TrendingUp className="w-4 h-4" />
+                                Page {page} of {totalPages}
+                            </div>
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-2">No trips found</h3>
-                        <p className="text-gray-500 mb-8 max-w-sm mx-auto">
-                            We couldn't find any trips matching your criteria. Try adjusting your filters.
+
+                        {/* Trip Cards Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+                            {trips.map((trip, index) => (
+                                <div
+                                    key={trip._id}
+                                    onClick={() => setSelectedTrip(trip)}
+                                    className="animate-in fade-in slide-in-from-bottom-4 duration-500"
+                                    style={{ animationDelay: `${index * 50}ms` }}
+                                >
+                                    <TripCard trip={trip} />
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                ) : (
+                    <div className="text-center py-20 bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl border border-gray-700 shadow-xl mx-auto max-w-2xl">
+                        <div className="relative inline-block mb-6">
+                            <div className="bg-gray-700 h-24 w-24 rounded-full flex items-center justify-center mx-auto">
+                                <Search className="h-10 w-10 text-gray-500" />
+                            </div>
+                            <div className="absolute -top-2 -right-2 bg-cyan-400 rounded-full p-2">
+                                <X className="h-4 w-4 text-gray-900" />
+                            </div>
+                        </div>
+                        <h3 className="text-2xl font-bold text-white mb-3">No Trips Found</h3>
+                        <p className="text-gray-400 mb-8 max-w-sm mx-auto leading-relaxed">
+                            We couldn't find any trips matching your criteria. Try adjusting your filters or search terms.
                         </p>
-                        <button onClick={clearFilters} className="btn-primary">
-                            Clear Filters
+                        <button
+                            onClick={clearFilters}
+                            className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-3 rounded-full font-bold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 active:scale-95"
+                        >
+                            <X className="w-4 h-4" />
+                            Clear All Filters
                         </button>
                     </div>
                 )}
 
                 {/* Pagination */}
                 {trips.length > 0 && totalPages > 1 && (
-                    <div className="flex justify-center items-center gap-2 mt-16">
+                    <div className="flex justify-center items-center gap-3 mt-16">
                         <button
-                            onClick={() => setPage(page - 1)}
+                            onClick={() => handlePageChange(page - 1)}
                             disabled={page === 1}
-                            className="w-10 h-10 flex items-center justify-center rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-travelo-dark hover:text-travelo-dark disabled:opacity-50 disabled:hover:bg-white disabled:hover:border-gray-200 disabled:hover:text-gray-600 transition-all duration-300 shadow-sm"
+                            className="group w-12 h-12 flex items-center justify-center rounded-xl bg-gray-800 border border-gray-700 text-gray-400 hover:bg-gray-700 hover:border-cyan-500 hover:text-cyan-400 disabled:opacity-30 disabled:hover:bg-gray-800 disabled:hover:border-gray-700 disabled:hover:text-gray-400 disabled:cursor-not-allowed transition-all duration-300 shadow-lg"
                         >
-                            <ArrowLeft className="h-5 w-5" />
+                            <ArrowLeft className="h-5 w-5 group-hover:scale-110 transition-transform" />
                         </button>
 
-                        <div className="flex items-center gap-2 bg-white px-2 py-1 rounded-xl shadow-sm border border-gray-100">
-                            {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                                <button
-                                    key={p}
-                                    onClick={() => setPage(p)}
-                                    className={`w-10 h-10 rounded-lg text-sm font-bold transition-all duration-300 ${page === p
-                                        ? "bg-travelo-dark text-white shadow-md scale-105"
-                                        : "text-gray-500 hover:bg-gray-50 hover:text-travelo-dark"
-                                        }`}
-                                >
-                                    {p}
-                                </button>
-                            ))}
+                        <div className="flex items-center gap-2 bg-gray-800 px-3 py-2 rounded-xl shadow-lg border border-gray-700">
+                            {Array.from({ length: Math.min(totalPages, 7) }, (_, i) => {
+                                let pageNum;
+                                if (totalPages <= 7) {
+                                    pageNum = i + 1;
+                                } else if (page <= 4) {
+                                    pageNum = i + 1;
+                                } else if (page >= totalPages - 3) {
+                                    pageNum = totalPages - 6 + i;
+                                } else {
+                                    pageNum = page - 3 + i;
+                                }
+
+                                return (
+                                    <button
+                                        key={pageNum}
+                                        onClick={() => handlePageChange(pageNum)}
+                                        className={`w-10 h-10 rounded-lg text-sm font-bold transition-all duration-300 ${page === pageNum
+                                            ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/50 scale-110"
+                                            : "text-gray-400 hover:bg-gray-700 hover:text-cyan-400"
+                                            }`}
+                                    >
+                                        {pageNum}
+                                    </button>
+                                );
+                            })}
                         </div>
 
                         <button
-                            onClick={() => setPage(page + 1)}
+                            onClick={() => handlePageChange(page + 1)}
                             disabled={page === totalPages}
-                            className="w-10 h-10 flex items-center justify-center rounded-xl bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-travelo-dark hover:text-travelo-dark disabled:opacity-50 disabled:hover:bg-white disabled:hover:border-gray-200 disabled:hover:text-gray-600 transition-all duration-300 shadow-sm"
+                            className="group w-12 h-12 flex items-center justify-center rounded-xl bg-gray-800 border border-gray-700 text-gray-400 hover:bg-gray-700 hover:border-cyan-500 hover:text-cyan-400 disabled:opacity-30 disabled:hover:bg-gray-800 disabled:hover:border-gray-700 disabled:hover:text-gray-400 disabled:cursor-not-allowed transition-all duration-300 shadow-lg"
                         >
-                            <ArrowRight className="h-5 w-5" />
+                            <ArrowRight className="h-5 w-5 group-hover:scale-110 transition-transform" />
                         </button>
                     </div>
                 )}

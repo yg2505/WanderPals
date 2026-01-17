@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { User, Mail, Lock, ArrowRight, ArrowLeft, Globe, Smile, Map, Camera, Hash } from "lucide-react";
+import { User, Mail, Lock, ArrowRight, ArrowLeft, Globe, Smile, Map, Camera } from "lucide-react";
 
 const Register = () => {
     const { register } = useContext(AuthContext);
@@ -13,7 +13,6 @@ const Register = () => {
         name: "",
         email: "",
         password: "",
-        age: "",
         age: "",
         country: "",
         state: "",
@@ -73,7 +72,7 @@ const Register = () => {
     };
 
     return (
-        <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-white">
+        <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-gray-900">
             {/* Left Side - Image */}
             <div className="hidden lg:block relative overflow-hidden order-last">
                 <img
@@ -81,18 +80,18 @@ const Register = () => {
                     alt="Travel Landscape"
                     className="absolute inset-0 w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px]"></div>
+                <div className="absolute inset-0 bg-gradient-to-bl from-gray-900/80 via-gray-900/60 to-transparent"></div>
                 <div className="absolute bottom-20 right-12 text-white p-6 max-w-lg text-right">
                     <h2 className="text-5xl font-bold mb-6 leading-tight">Start your journey today.</h2>
-                    <p className="text-xl text-white/90">Create an account and discover your next adventure with WanderPals.</p>
+                    <p className="text-xl text-gray-200">Create an account and discover your next adventure with WanderPals.</p>
                 </div>
             </div>
 
             {/* Right Side - Form */}
-            <div className="flex flex-col justify-center p-8 sm:p-20 relative order-first">
+            <div className="flex flex-col justify-center p-8 sm:p-20 relative order-first bg-gray-900">
                 {/* Minimal Header */}
                 <div className="absolute top-8 left-8 sm:left-20">
-                    <Link to="/" className="text-2xl font-bold text-travelo-dark tracking-tight">
+                    <Link to="/" className="text-2xl font-bold text-white tracking-tight">
                         WanderPals
                     </Link>
                 </div>
@@ -102,21 +101,21 @@ const Register = () => {
                     <div className="flex items-center mb-10 w-full">
                         {[1, 2, 3].map((s) => (
                             <div key={s} className="flex items-center flex-1">
-                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${step >= s ? "bg-travelo-dark text-white" : "bg-gray-200 text-gray-500"} transition-all duration-300`}>
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${step >= s ? "bg-gradient-to-r from-cyan-500 to-cyan-400 text-white shadow-lg shadow-cyan-500/50" : "bg-gray-700 text-gray-400"} transition-all duration-300`}>
                                     {s}
                                 </div>
-                                {s < 3 && <div className={`h-1 w-full mx-2 rounded ${step > s ? "bg-travelo-dark" : "bg-gray-200"}`} />}
+                                {s < 3 && <div className={`h-1 w-full mx-2 rounded ${step > s ? "bg-cyan-500" : "bg-gray-700"}`} />}
                             </div>
                         ))}
                     </div>
 
                     <div className="mb-8">
-                        <h1 className="text-4xl font-bold text-gray-900 mb-3">
+                        <h1 className="text-4xl font-bold text-white mb-3">
                             {step === 1 && "Create Account"}
                             {step === 2 && "Personal Details"}
                             {step === 3 && "Build Your Profile"}
                         </h1>
-                        <p className="text-gray-500">
+                        <p className="text-gray-400">
                             {step === 1 && "Sign up to get started."}
                             {step === 2 && "Tell us a bit about yourself."}
                             {step === 3 && "Share your travel interests."}
@@ -124,7 +123,7 @@ const Register = () => {
                     </div>
 
                     {error && (
-                        <div className="bg-red-50 text-red-600 p-4 rounded-xl text-sm border border-red-100 flex items-center mb-6">
+                        <div className="bg-red-500/10 text-red-400 p-4 rounded-xl text-sm border border-red-500/20 flex items-center mb-6">
                             <span className="mr-2">⚠️</span> {error}
                         </div>
                     )}
@@ -134,16 +133,16 @@ const Register = () => {
                         {step === 1 && (
                             <div className="space-y-4 animate-fade-in">
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-700 ml-1">Full Name *</label>
+                                    <label className="text-sm font-medium text-gray-300 ml-1">Full Name *</label>
                                     <div className="relative group">
                                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                            <User className="h-5 w-5 text-gray-400 group-focus-within:text-travelo-dark transition-colors" />
+                                            <User className="h-5 w-5 text-gray-500 group-focus-within:text-cyan-400 transition-colors" />
                                         </div>
                                         <input
                                             type="text"
                                             name="name"
                                             required
-                                            className="input-field-with-icon pl-12"
+                                            className="input-field-dark pl-12"
                                             placeholder="John Doe"
                                             value={formData.name}
                                             onChange={handleChange}
@@ -152,16 +151,16 @@ const Register = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-700 ml-1">Email Address *</label>
+                                    <label className="text-sm font-medium text-gray-300 ml-1">Email Address *</label>
                                     <div className="relative group">
                                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                            <Mail className="h-5 w-5 text-gray-400 group-focus-within:text-travelo-dark transition-colors" />
+                                            <Mail className="h-5 w-5 text-gray-500 group-focus-within:text-cyan-400 transition-colors" />
                                         </div>
                                         <input
                                             type="email"
                                             name="email"
                                             required
-                                            className="input-field-with-icon pl-12"
+                                            className="input-field-dark pl-12"
                                             placeholder="john@example.com"
                                             value={formData.email}
                                             onChange={handleChange}
@@ -170,16 +169,16 @@ const Register = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-700 ml-1">Password *</label>
+                                    <label className="text-sm font-medium text-gray-300 ml-1">Password *</label>
                                     <div className="relative group">
                                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                            <Lock className="h-5 w-5 text-gray-400 group-focus-within:text-travelo-dark transition-colors" />
+                                            <Lock className="h-5 w-5 text-gray-500 group-focus-within:text-cyan-400 transition-colors" />
                                         </div>
                                         <input
                                             type="password"
                                             name="password"
                                             required
-                                            className="input-field-with-icon pl-12"
+                                            className="input-field-dark pl-12"
                                             placeholder="Create a password"
                                             value={formData.password}
                                             onChange={handleChange}
@@ -194,16 +193,16 @@ const Register = () => {
                             <div className="space-y-4 animate-fade-in">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-2">
-                                        <label className="text-sm font-medium text-gray-700 ml-1">Age *</label>
+                                        <label className="text-sm font-medium text-gray-300 ml-1">Age *</label>
                                         <div className="relative group">
                                             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                <Smile className="h-5 w-5 text-gray-400 group-focus-within:text-travelo-dark transition-colors" />
+                                                <Smile className="h-5 w-5 text-gray-500 group-focus-within:text-cyan-400 transition-colors" />
                                             </div>
                                             <input
                                                 type="number"
                                                 name="age"
                                                 required
-                                                className="input-field-with-icon pl-12"
+                                                className="input-field-dark pl-12"
                                                 placeholder="25"
                                                 value={formData.age}
                                                 onChange={handleChange}
@@ -211,16 +210,16 @@ const Register = () => {
                                         </div>
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-sm font-medium text-gray-700 ml-1">Country *</label>
+                                        <label className="text-sm font-medium text-gray-300 ml-1">Country *</label>
                                         <div className="relative group">
                                             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                <Globe className="h-5 w-5 text-gray-400 group-focus-within:text-travelo-dark transition-colors" />
+                                                <Globe className="h-5 w-5 text-gray-500 group-focus-within:text-cyan-400 transition-colors" />
                                             </div>
                                             <input
                                                 type="text"
                                                 name="country"
                                                 required
-                                                className="input-field-with-icon pl-12"
+                                                className="input-field-dark pl-12"
                                                 placeholder="USA"
                                                 value={formData.country}
                                                 onChange={handleChange}
@@ -228,16 +227,16 @@ const Register = () => {
                                         </div>
                                     </div>
                                     <div className="col-span-2 space-y-2">
-                                        <label className="text-sm font-medium text-gray-700 ml-1">State/Province *</label>
+                                        <label className="text-sm font-medium text-gray-300 ml-1">State/Province *</label>
                                         <div className="relative group">
                                             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                <Map className="h-5 w-5 text-gray-400 group-focus-within:text-travelo-dark transition-colors" />
+                                                <Map className="h-5 w-5 text-gray-500 group-focus-within:text-cyan-400 transition-colors" />
                                             </div>
                                             <input
                                                 type="text"
                                                 name="state"
                                                 required
-                                                className="input-field-with-icon pl-12"
+                                                className="input-field-dark pl-12"
                                                 placeholder="California"
                                                 value={formData.state}
                                                 onChange={handleChange}
@@ -247,21 +246,21 @@ const Register = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-700 ml-1">Profile Photo URL</label>
+                                    <label className="text-sm font-medium text-gray-300 ml-1">Profile Photo URL</label>
                                     <div className="relative group">
                                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                            <Camera className="h-5 w-5 text-gray-400 group-focus-within:text-travelo-dark transition-colors" />
+                                            <Camera className="h-5 w-5 text-gray-500 group-focus-within:text-cyan-400 transition-colors" />
                                         </div>
                                         <input
                                             type="url"
                                             name="avatar"
-                                            className="input-field-with-icon pl-12"
+                                            className="input-field-dark pl-12"
                                             placeholder="https://example.com/me.jpg"
                                             value={formData.avatar}
                                             onChange={handleChange}
                                         />
                                     </div>
-                                    <p className="text-xs text-gray-400 ml-1">Leave blank for default avatar</p>
+                                    <p className="text-xs text-gray-500 ml-1">Leave blank for default avatar</p>
                                 </div>
                             </div>
                         )}
@@ -270,12 +269,12 @@ const Register = () => {
                         {step === 3 && (
                             <div className="space-y-4 animate-fade-in">
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-700 ml-1">Bio (Max 200 chars)</label>
+                                    <label className="text-sm font-medium text-gray-300 ml-1">Bio (Max 200 chars)</label>
                                     <textarea
                                         name="bio"
                                         maxLength="200"
                                         rows="3"
-                                        className="block w-full p-4 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-travelo-dark/20 focus:border-travelo-dark transition-all duration-200 resize-none"
+                                        className="block w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all duration-200 resize-none"
                                         placeholder="Tell us about your travel dreams..."
                                         value={formData.bio}
                                         onChange={handleChange}
@@ -283,10 +282,10 @@ const Register = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-700 ml-1">Travel Style</label>
+                                    <label className="text-sm font-medium text-gray-300 ml-1">Travel Style</label>
                                     <select
                                         name="travelStyle"
-                                        className="block w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-travelo-dark/20 focus:border-travelo-dark transition-all duration-200"
+                                        className="block w-full px-4 py-3.5 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all duration-200"
                                         value={formData.travelStyle}
                                         onChange={handleChange}
                                     >
@@ -300,11 +299,11 @@ const Register = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-700 ml-1">Languages (Comma separated)</label>
+                                    <label className="text-sm font-medium text-gray-300 ml-1">Languages (Comma separated)</label>
                                     <input
                                         type="text"
                                         name="languages"
-                                        className="input-field-with-icon px-4"
+                                        className="input-field-dark px-4"
                                         placeholder="English, Spanish, French"
                                         value={formData.languages}
                                         onChange={handleChange}
@@ -312,11 +311,11 @@ const Register = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-700 ml-1">Interests (Comma separated)</label>
+                                    <label className="text-sm font-medium text-gray-300 ml-1">Interests (Comma separated)</label>
                                     <input
                                         type="text"
                                         name="interests"
-                                        className="input-field-with-icon px-4"
+                                        className="input-field-dark px-4"
                                         placeholder="Hiking, Photography, History"
                                         value={formData.interests}
                                         onChange={handleChange}
@@ -330,7 +329,7 @@ const Register = () => {
                                 <button
                                     type="button"
                                     onClick={prevStep}
-                                    className="flex-1 bg-gray-100 text-gray-700 font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors flex items-center justify-center"
+                                    className="flex-1 bg-gray-800 text-gray-300 font-bold py-4 rounded-xl hover:bg-gray-700 border border-gray-700 transition-colors flex items-center justify-center"
                                 >
                                     <ArrowLeft className="mr-2 w-5 h-5" /> Back
                                 </button>
@@ -340,14 +339,14 @@ const Register = () => {
                                 <button
                                     type="button"
                                     onClick={nextStep}
-                                    className="flex-1 bg-travelo-dark text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center"
+                                    className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold py-4 rounded-full shadow-lg shadow-cyan-500/50 hover:from-cyan-600 hover:to-blue-600 hover:shadow-cyan-500/70 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center"
                                 >
                                     Next <ArrowRight className="ml-2 w-5 h-5" />
                                 </button>
                             ) : (
                                 <button
                                     type="submit"
-                                    className="flex-1 bg-travelo-dark text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center"
+                                    className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold py-4 rounded-full shadow-lg shadow-cyan-500/50 hover:from-cyan-600 hover:to-blue-600 hover:shadow-cyan-500/70 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center"
                                 >
                                     Complete <ArrowRight className="ml-2 w-5 h-5" />
                                 </button>
@@ -356,35 +355,38 @@ const Register = () => {
                     </form>
 
                     <div className="mt-8 text-center">
-                        <p className="text-gray-500">
+                        <p className="text-gray-400">
                             Already have an account?{' '}
-                            <Link to="/login" className="text-travelo-dark font-bold hover:underline">
+                            <Link to="/login" className="text-cyan-400 font-bold hover:text-cyan-300 hover:underline transition-colors">
                                 Sign in
                             </Link>
                         </p>
                     </div>
 
                     <style>{`
-                        .input-field-with-icon {
+                        .input-field-dark {
                             display: block;
                             width: 100%;
-                            padding-top: 0.875rem; /* 14px */
+                            padding-top: 0.875rem;
                             padding-bottom: 0.875rem;
                             padding-right: 1rem;
-                            background-color: rgb(249 250 251); /* gray-50 */
+                            background-color: rgb(31 41 55); /* gray-800 */
                             border-width: 1px;
-                            border-color: rgb(229 231 235); /* gray-200 */
-                            border-radius: 0.75rem; /* rounded-xl */
-                            color: rgb(17 24 39); /* gray-900 */
+                            border-color: rgb(55 65 81); /* gray-700 */
+                            border-radius: 0.75rem;
+                            color: white;
                         }
-                        .input-field-with-icon:focus {
+                        .input-field-dark::placeholder {
+                            color: rgb(107 114 128); /* gray-500 */
+                        }
+                        .input-field-dark:focus {
                             outline: 2px solid transparent;
                             outline-offset: 2px;
                             --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
                             --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
                             box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-                            --tw-ring-color: rgba(30, 41, 59, 0.2);
-                            border-color: rgb(30 29 59); /* travelo-dark */
+                            --tw-ring-color: rgba(6, 182, 212, 0.5); /* cyan-500/50 */
+                            border-color: rgb(6 182 212); /* cyan-500 */
                         }
                     `}</style>
                 </div>

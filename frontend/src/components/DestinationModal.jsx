@@ -68,7 +68,7 @@ const DestinationModal = ({ destination, onClose }) => {
                             </button>
                             <button
                                 onClick={() => navigate('/create-trip', { state: { destination: destination.name } })}
-                                className="px-6 py-3 bg-travelo-dark text-white rounded-xl font-bold hover:bg-gray-800 transition-colors shadow-lg shadow-travelo-dark/20">
+                                className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full font-bold hover:from-cyan-600 hover:to-blue-600 transition-all shadow-lg shadow-cyan-500/50">
                                 Create Trip
                             </button>
                         </div>

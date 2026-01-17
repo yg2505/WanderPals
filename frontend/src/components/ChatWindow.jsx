@@ -117,7 +117,7 @@ const ChatWindow = ({ selectedChat }) => {
     if (!selectedChat) return null;
 
     return (
-        <div className="flex flex-col h-full bg-gray-50">
+        <div className="flex flex-col h-full bg-gray-900">
             <div className="flex-1 overflow-y-auto p-4 space-y-3">
                 {messages.map((m, i) => (
                     <div
@@ -127,8 +127,8 @@ const ChatWindow = ({ selectedChat }) => {
                     >
                         <div
                             className={`max-w-[75%] px-5 py-3 rounded-2xl ${m.sender._id === user._id
-                                    ? "bg-travelo-navy text-white rounded-br-none shadow-md"
-                                    : "bg-white text-gray-800 shadow-sm rounded-bl-none border border-gray-100"
+                                ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-br-none shadow-lg"
+                                : "bg-gray-800 text-gray-100 shadow-md rounded-bl-none border border-gray-700"
                                 }`}
                         >
                             <p className="text-sm md:text-base leading-relaxed">{m.content}</p>
@@ -137,24 +137,24 @@ const ChatWindow = ({ selectedChat }) => {
                 ))}
                 {isTyping && (
                     <div className="flex items-center space-x-2 ml-4">
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-75"></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-150"></div>
+                        <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce delay-75"></div>
+                        <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce delay-150"></div>
                     </div>
                 )}
             </div>
-            <div className="p-4 bg-white border-t border-gray-200">
+            <div className="p-4 bg-gray-800 border-t border-gray-700">
                 <form onSubmit={sendMessage} className="flex space-x-3 max-w-4xl mx-auto">
                     <input
                         type="text"
-                        className="flex-1 bg-gray-100 border-none rounded-full px-5 py-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-travelo-navy transition-all"
+                        className="flex-1 bg-gray-700 border-none rounded-full px-5 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
                         placeholder="Type a message..."
                         value={newMessage}
                         onChange={typingHandler}
                     />
                     <button
                         type="submit"
-                        className="bg-travelo-navy text-white p-3 rounded-full hover:bg-gray-800 shadow-lg transition-all transform active:scale-95"
+                        className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white p-3 rounded-full hover:from-cyan-600 hover:to-blue-600 shadow-lg shadow-cyan-500/50 transition-all transform active:scale-95"
                     >
                         <Send className="w-5 h-5" />
                     </button>

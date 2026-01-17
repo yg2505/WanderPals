@@ -26,7 +26,7 @@ const Navbar = () => {
         navigate('/login');
     };
 
-    const navClass = `fixed w-full z-50 transition-all duration-300 ${isScrolled || !isLanding ? "bg-travelo-dark/95 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-6"
+    const navClass = `fixed w-full z-50 transition-all duration-300 ${isScrolled || !isLanding ? "bg-gray-900/95 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-6"
         }`;
 
     const linkClass = "text-sm font-medium text-gray-300 hover:text-white transition-colors cursor-pointer";
@@ -73,7 +73,7 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
-                <div className="md:hidden absolute top-full left-0 w-full bg-travelo-dark border-t border-gray-800 p-4 flex flex-col space-y-4 shadow-xl">
+                <div className="md:hidden absolute top-full left-0 w-full bg-gray-900 border-t border-gray-800 p-4 flex flex-col space-y-4 shadow-xl">
                     <Link to={user ? "/dashboard" : "/"} className={linkClass} onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
 
                     {user && (

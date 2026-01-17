@@ -3,14 +3,15 @@
 
 @theme {
     --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
-    
+
     --color-travelo-navy: #1e293b;
     --color-travelo-dark: #111827;
+    --color-travelo-primary: #06b6d4;
     --color-travelo-teal: #14b8a6;
     --color-travelo-white: #ffffff;
     --color-travelo-gray: #9ca3af;
     --color-travelo-light: #f3f4f6;
-    
+
     --color-brand-50: #f5f3ff;
     --color-brand-100: #ede9fe;
     --color-brand-200: #ddd6fe;
@@ -22,19 +23,31 @@
     --color-brand-800: #5b21b6;
     --color-brand-900: #4c1d95;
     --color-brand-950: #2e1065;
-    
+
     --animate-fade-in: fadeIn 0.5s ease-out;
     --animate-slide-up: slideUp 0.5s ease-out;
     --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    
+
     @keyframes fadeIn {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
     }
-    
+
     @keyframes slideUp {
-        0% { transform: translateY(20px); opacity: 0; }
-        100% { transform: translateY(0); opacity: 1; }
+        0% {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
 }
 
@@ -42,7 +55,8 @@
 @layer base {
     body {
         background-color: white;
-        color: rgb(17 24 39); /* gray-900 */
+        color: rgb(17 24 39);
+        /* gray-900 */
         font-family: var(--font-sans);
         -webkit-font-smoothing: antialiased;
     }
@@ -76,16 +90,16 @@
 /* -------------- COMPONENTS ------------- */
 @layer components {
 
-  /* Buttons */
-  .btn-primary {
-    @apply bg-white text-travelo-dark btn-pill;
-  }
+    /* Buttons */
+    .btn-primary {
+        @apply bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:from-cyan-600 hover:to-blue-600 btn-pill;
+    }
 
-  .btn-outline {
-    @apply border border-white text-white btn-pill;
-  }
+    .btn-outline {
+        @apply border border-white text-white btn-pill;
+    }
 
-  .btn-dark {
-    @apply bg-travelo-dark text-white btn-pill;
-  }
+    .btn-dark {
+        @apply bg-gradient-to-r from-gray-800 to-gray-900 text-white border border-gray-700 hover:border-gray-600 btn-pill;
+    }
 }
