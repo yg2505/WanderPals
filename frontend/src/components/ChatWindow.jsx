@@ -22,7 +22,7 @@ const ChatWindow = ({ selectedChat }) => {
                     headers: { Authorization: `Bearer ${user.token}` },
                 };
                 const { data } = await axios.get(
-                    `http://localhost:8080/api/messages/${selectedChat._id}`,
+                    `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/messages/${selectedChat._id}`,
                     config
                 );
                 setMessages(data);
@@ -73,7 +73,7 @@ const ChatWindow = ({ selectedChat }) => {
                 },
             };
             const { data } = await axios.post(
-                "http://localhost:8080/api/messages",
+                `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/messages`,
                 { content: newMessage, chatId: selectedChat._id },
                 config
             );

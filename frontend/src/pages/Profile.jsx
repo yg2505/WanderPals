@@ -50,7 +50,7 @@ const Profile = () => {
             const config = {
                 headers: { Authorization: `Bearer ${user.token}` },
             };
-            const { data } = await axios.get("http://localhost:8080/api/trips", config);
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/trips`, config);
             setMyTrips(data);
         } catch (error) {
             console.error("Error fetching my trips", error);
@@ -92,7 +92,7 @@ const Profile = () => {
             };
 
             const { data } = await axios.post(
-                "http://localhost:8080/api/chat",
+                `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/chat`,
                 { userId: tripOwner._id },
                 config
             );

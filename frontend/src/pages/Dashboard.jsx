@@ -14,7 +14,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchDestinations = async () => {
             try {
-                const { data } = await axios.get("http://localhost:8080/api/destinations");
+                const { data } = await axios.get(`${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/destinations`);
                 setDestinations(data);
             } catch (error) {
                 console.error("Error fetching destinations", error);

@@ -17,7 +17,7 @@ const Chat = () => {
                 const config = {
                     headers: { Authorization: `Bearer ${user.token}` },
                 };
-                const { data } = await axios.get("http://localhost:8080/api/chat", config);
+                const { data } = await axios.get(`${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/chat`, config);
                 setChats(data);
 
                 // If a chat was passed via navigation state, select it
@@ -60,8 +60,8 @@ const Chat = () => {
                             key={chat._id}
                             onClick={() => setSelectedChat(chat)}
                             className={`p-4 rounded-2xl cursor-pointer transition-all ${selectedChat?._id === chat._id
-                                    ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/50"
-                                    : "hover:bg-gray-700 text-gray-300"
+                                ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/50"
+                                : "hover:bg-gray-700 text-gray-300"
                                 }`}
                         >
                             <div className="flex items-center">

@@ -15,7 +15,12 @@ const allowedOrigins = [
     "http://localhost:5173",
     "http://localhost:5174",
     "http://127.0.0.1:5173",
-    "http://127.0.0.1:5174"
+    "http://127.0.0.1:5174",
+    "https://wanderpals.onrender.com",
+    "https://wander-pals.vercel.app",
+    "https://wander-pals-yg2505s-projects.vercel.app",
+    "https://wander-pals-git-main-yg2505s-projects.vercel.app",
+    "https://wander-pals-293ms8oh6-yg2505s-projects.vercel.app"
 ];
 
 const corsOptions = {

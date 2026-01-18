@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
                 },
             };
             const { data } = await axios.post(
-                "http://localhost:8080/api/auth/login",
+                `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/auth/login`,
                 { email, password },
                 config
             );
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (userData) => {
         try {
-            const { data } = await axios.post("http://localhost:8080/api/auth/register", userData);
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/auth/register`, userData);
             localStorage.setItem("userInfo", JSON.stringify(data));
             setUser(data);
             return data;

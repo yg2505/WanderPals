@@ -38,7 +38,7 @@ const Explore = () => {
                 if (filters.minBudget) params.append("minBudget", filters.minBudget);
                 if (filters.maxBudget) params.append("maxBudget", filters.maxBudget);
 
-                const { data } = await axios.get(`http://localhost:8080/api/trips/all?${params}`);
+                const { data } = await axios.get(`${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/trips/all?${params}`);
                 setTrips(data.trips);
                 setTotalPages(data.pages);
             } catch (error) {
@@ -91,7 +91,7 @@ const Explore = () => {
             };
 
             const { data } = await axios.post(
-                "http://localhost:8080/api/chat",
+                `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/chat`,
                 { userId: tripOwner._id },
                 config
             );

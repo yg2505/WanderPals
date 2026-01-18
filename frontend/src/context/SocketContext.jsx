@@ -10,7 +10,7 @@ export const SocketProvider = ({ children }) => {
 
     useEffect(() => {
         if (user) {
-            const newSocket = io("http://localhost:8080");
+            const newSocket = io(import.meta.env.VITE_API_URL || "http://localhost:8080");
             setSocket(newSocket);
             newSocket.emit("addUser", user._id); // Assuming backend expects _id, mapped to userId in memory
 

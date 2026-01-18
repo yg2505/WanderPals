@@ -33,7 +33,7 @@ const CreateTrip = () => {
                 },
             };
             await axios.post(
-                "http://localhost:8080/api/trips",
+                `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/trips`,
                 { destination, startingLocation, startDate, endDate, description, budget, image },
                 config
             );
