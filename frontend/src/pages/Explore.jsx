@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
 import { Search, Filter, ArrowLeft, ArrowRight, X, ChevronDown, Sparkles, MapPin, TrendingUp } from "lucide-react";
+import toast from "react-hot-toast";
 
 const Explore = () => {
     const [trips, setTrips] = useState([]);
@@ -78,7 +79,7 @@ const Explore = () => {
 
         console.log("Starting chat with:", tripOwner);
         if (!tripOwner || !tripOwner._id) {
-            alert("Error: Invalid trip owner data");
+            toast.error("Error: Invalid trip owner data");
             return;
         }
 
@@ -100,7 +101,7 @@ const Explore = () => {
             navigate("/chat", { state: { chat: data } });
         } catch (error) {
             console.error("Error creating/accessing chat", error);
-            alert("Failed to open chat. Please check console.");
+            toast.error("Failed to open chat. Please try again.");
         }
     };
 

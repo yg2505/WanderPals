@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { Mail, Lock, ArrowRight } from "lucide-react";
+import toast from "react-hot-toast";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -14,9 +15,12 @@ const Login = () => {
         e.preventDefault();
         try {
             await login(email, password);
+            toast.success("Login successful!");
             navigate("/dashboard");
         } catch (err) {
-            setError(err.response?.data?.message || "Login failed");
+            const errorMessage = err.response?.data?.message || "Login failed";
+            setError(errorMessage);
+            toast.error(errorMessage);
         }
     };
 

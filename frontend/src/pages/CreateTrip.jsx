@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
 import { Calendar, MapPin, DollarSign, Type, Image as ImageIcon } from "lucide-react";
+import toast from "react-hot-toast";
 
 const CreateTrip = () => {
     const [destination, setDestination] = useState("");
@@ -37,10 +38,11 @@ const CreateTrip = () => {
                 { destination, startingLocation, startDate, endDate, description, budget, image },
                 config
             );
-            navigate("/");
+            toast.success("Trip created successfully!");
+            navigate("/explore");
         } catch (error) {
             console.error(error);
-            alert("Failed to create trip");
+            toast.error(error.response?.data?.message || "Failed to create trip");
         }
     };
 

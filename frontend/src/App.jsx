@@ -12,6 +12,7 @@ import About from "./pages/About";
 import Profile from "./pages/Profile";
 import { useContext } from "react";
 import AuthContext from "./context/AuthContext";
+import { Toaster } from "react-hot-toast";
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
@@ -76,6 +77,7 @@ function App() {
       <AuthProvider>
         <SocketProvider>
           <AppContent />
+          <Toaster position="top-right" reverseOrder={false} />
         </SocketProvider>
       </AuthProvider>
     </Router>

@@ -6,6 +6,7 @@ import TripCard from "../components/TripCard";
 import TripDetailsModal from "../components/TripDetailsModal";
 import { User, Mail, Edit3, MapPin, Calendar, Camera, X, MessageSquare, LogOut, Sparkles } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Profile = () => {
     const { user, updateUser, logout } = useContext(AuthContext);
@@ -70,10 +71,10 @@ const Profile = () => {
             };
             await updateUser(updatedData);
             setIsEditing(false);
-            alert("Profile updated successfully!");
+            toast.success("Profile updated successfully!");
         } catch (error) {
             console.error("Error updating profile", error);
-            alert("Failed to update profile");
+            toast.error(error.response?.data?.message || "Failed to update profile");
         }
     };
 
@@ -100,7 +101,7 @@ const Profile = () => {
             navigate("/chat", { state: { chat: data } });
         } catch (error) {
             console.error("Error creating/accessing chat", error);
-            alert("Failed to open chat. Please check console.");
+            toast.error("Failed to open chat. Please try again.");
         }
     };
 

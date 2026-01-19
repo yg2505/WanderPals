@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { User, Mail, Lock, ArrowRight, ArrowLeft, Globe, Smile, Map, Camera } from "lucide-react";
+import toast from "react-hot-toast";
 
 const Register = () => {
     const { register } = useContext(AuthContext);
@@ -31,13 +32,17 @@ const Register = () => {
         setError("");
         if (step === 1) {
             if (!formData.name || !formData.email || !formData.password) {
-                setError("Please fill in all required fields.");
+                const msg = "Please fill in all required fields.";
+                setError(msg);
+                toast.error(msg);
                 return;
             }
         }
         if (step === 2) {
             if (!formData.age || !formData.country || !formData.state) {
-                setError("Please fill in all required fields.");
+                const msg = "Please fill in all required fields.";
+                setError(msg);
+                toast.error(msg);
                 return;
             }
         }
@@ -51,7 +56,9 @@ const Register = () => {
         setError(""); // Clear previous errors
 
         if (!formData.languages.trim() || !formData.interests.trim()) {
-            setError("Languages and Interests are required to create a profile.");
+            const msg = "Languages and Interests are required to create a profile.";
+            setError(msg);
+            toast.error(msg);
             return;
         }
 
@@ -65,9 +72,12 @@ const Register = () => {
             };
 
             await register(payload);
+            toast.success("Registration successful!");
             navigate("/dashboard");
         } catch (err) {
-            setError(err.response?.data?.message || "Registration failed");
+            const errorMessage = err.response?.data?.message || "Registration failed";
+            setError(errorMessage);
+            toast.error(errorMessage);
         }
     };
 

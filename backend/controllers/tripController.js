@@ -86,6 +86,9 @@ const getAllTrips = async (req, res) => {
             if (maxBudget) query.budget.$lte = Number(maxBudget);
         }
 
+        // Only show trips that haven't ended yet on the explore page
+        query.endDate = { $gte: new Date() };
+
         // Sorting
         let sortOption = { createdAt: -1 }; // Default
         if (sort === 'price_asc') sortOption = { budget: 1 };
