@@ -131,7 +131,6 @@ const Dashboard = () => {
                 <div className="text-center mb-16">
                     <h2 className="text-sm text-gray-400 font-bold uppercase tracking-widest mb-4">POPULAR TOURS</h2>
                     <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">Explore Top Destinations</h3>
-                    <p className="text-gray-400 max-w-2xl mx-auto">There will be a small title here</p>
                 </div>
 
                 <div className="flex justify-end mb-8 gap-4">
@@ -159,7 +158,10 @@ const Dashboard = () => {
                                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90" />
                                 <div className="absolute bottom-0 left-0 w-full p-6 text-white">
                                     <h3 className="text-2xl font-bold mb-2">{destination.name}</h3>
-                                    <p className="text-sm text-gray-300">There will be a small</p>
+                                    <div className="flex items-center space-x-2 text-white">
+                                        <MapPin className="w-4 h-4" />
+                                        <span className="font-medium">{destination.location}</span>
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -172,50 +174,42 @@ const Dashboard = () => {
             </div>
 
             {/* DISCOVER SECTION */}
-            <div className="relative py-32 overflow-hidden">
+            <div className="relative py-20 md:py-28 overflow-hidden">
                 <div className="absolute inset-0">
                     <img
-                        src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=2074&auto=format&fit=crop"
-                        alt="Forest"
+                        src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=2070&auto=format&fit=crop"
+                        alt="Atmospheric Travel"
                         className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-black/60" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-gray-800/80 via-black/70 to-gray-900" />
                 </div>
 
-                <div className="relative z-10 container-custom grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div className="text-white">
-                        <h2 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
-                            DISCOVER THE<br />WORLD IN A<br />NEW WAY
+                <div className="relative z-10 container-custom">
+                    <div className="max-w-3xl mx-auto text-center">
+                        <h2 className="text-5xl md:text-8xl font-black mb-10 leading-tight text-white tracking-tighter">
+                            FIND YOUR<br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                                PERFECT COMPANION
+                            </span>
                         </h2>
-                        <button className="flex items-center gap-3 text-white font-bold text-lg mb-8 group">
-                            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-cyan-400 transition-colors">
-                                <div className="w-0 h-0 border-l-8 border-l-white border-t-4 border-t-transparent border-b-4 border-b-transparent ml-1" />
-                            </div>
-                            WATCH THE VIDEO
-                        </button>
-                        <p className="text-gray-300 leading-relaxed max-w-md mb-6">
-                            "Attachment to things and comfort is the main obstacle to freedom. We need to realize that at any time they can
-                            take everything out of their eyes. Anytime."
-                        </p>
-                        <p className="text-cyan-400 font-semibold">© Carlos Castaneda</p>
-                    </div>
 
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="relative rounded-xl overflow-hidden h-48 group cursor-pointer">
-                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800" alt="Video 1" className="w-full h-full object-cover" />
-                            <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                                <div className="w-12 h-12 bg-white/80 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    <div className="w-0 h-0 border-l-6 border-l-gray-900 border-t-4 border-t-transparent border-b-4 border-b-transparent ml-1" />
-                                </div>
-                            </div>
+                        <p className="text-gray-300 leading-relaxed text-xl mb-12 max-w-2xl mx-auto">
+                            WanderPals is built on the belief that the best journeys are the ones we share.
+                            Connect with explorers who match your vibe and create stories that last a lifetime.
+                        </p>
+
+                        <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+                            <Link to="/explore" className="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-10 py-5 rounded-full font-bold hover:scale-105 transition-all shadow-xl shadow-cyan-500/30 group">
+                                <Users className="w-6 h-6" />
+                                Start Your Journey
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </Link>
                         </div>
-                        <div className="relative rounded-xl overflow-hidden h-48 group cursor-pointer">
-                            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=800" alt="Video 2" className="w-full h-full object-cover" />
-                            <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                                <div className="w-12 h-12 bg-white/80 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    <div className="w-0 h-0 border-l-6 border-l-gray-900 border-t-4 border-t-transparent border-b-4 border-b-transparent ml-1" />
-                                </div>
-                            </div>
+
+                        <div className="mt-16 flex items-center justify-center gap-4">
+                            <div className="h-px w-16 bg-gradient-to-r from-transparent to-cyan-400"></div>
+                            <p className="text-cyan-400 font-bold tracking-[0.2em] uppercase text-xs">The world is better together</p>
+                            <div className="h-px w-16 bg-gradient-to-l from-transparent to-cyan-400"></div>
                         </div>
                     </div>
                 </div>

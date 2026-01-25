@@ -11,6 +11,19 @@ const createTrip = async (req, res) => {
         return res.status(400).json({ message: 'Please add all required fields' });
     }
 
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (start < today) {
+        return res.status(400).json({ message: 'Start date cannot be in the past' });
+    }
+
+    if (end < start) {
+        return res.status(400).json({ message: 'End date must be after start date' });
+    }
+
     const trip = await Trip.create({
         userId: req.user.id,
         destination,
@@ -54,10 +67,12 @@ const getMatches = async (req, res) => {
     }
 
     // Find trips with same destination and overlapping dates, excluding my trip and my other trips
+    // Also ensure matched trips haven't ended yet
     const matches = await Trip.find({
         destination: { $regex: new RegExp(myTrip.destination, 'i') }, // Case insensitive match
         _id: { $ne: myTrip._id },
         userId: { $ne: req.user.id },
+        endDate: { $gte: new Date() }, // Matched trip must not have ended
         $or: [
             { startDate: { $gte: myTrip.startDate, $lte: myTrip.endDate } },
             { endDate: { $gte: myTrip.startDate, $lte: myTrip.endDate } },
@@ -65,7 +80,11 @@ const getMatches = async (req, res) => {
         ]
     }).populate('userId', 'name email avatar bio');
 
-    res.status(200).json(matches);
+    // Second-layer Manual Filter: Guarantee no past trips in matches
+    const now = new Date();
+    const activeMatches = matches.filter(match => new Date(match.endDate) >= now);
+
+    res.status(200).json(activeMatches);
 }
 
 // @desc    Get all trips (public)
@@ -73,7 +92,7 @@ const getMatches = async (req, res) => {
 // @access  Public
 const getAllTrips = async (req, res) => {
     try {
-        const { page = 1, limit = 9, sort, destination, minBudget, maxBudget } = req.query;
+        const { page = 1, limit = 8, sort, destination, minBudget, maxBudget } = req.query;
 
         // Filtering
         const query = {};
@@ -101,19 +120,31 @@ const getAllTrips = async (req, res) => {
         const limitNumber = Number(limit);
         const skip = (pageNumber - 1) * limitNumber;
 
-        const trips = await Trip.find(query)
+        let trips = await Trip.find(query)
             .sort(sortOption)
             .skip(skip)
             .limit(limitNumber)
             .populate('userId', 'name email avatar');
 
-        const total = await Trip.countDocuments(query);
+        // Second-layer Manual Filter: Robust unix timestamp comparison
+        const now = new Date();
+        const nowTime = now.getTime();
+        trips = trips.filter(trip => {
+            if (!trip.endDate) return false;
+            return new Date(trip.endDate).getTime() >= nowTime;
+        });
+
+        // Count strictly active trips for the total statistic
+        const activeTotal = await Trip.countDocuments({
+            ...query,
+            endDate: { $gte: now }
+        });
 
         res.status(200).json({
             trips,
             page: pageNumber,
-            pages: Math.ceil(total / limitNumber),
-            total
+            pages: Math.ceil(activeTotal / limitNumber),
+            total: activeTotal
         });
     } catch (error) {
         res.status(500).json({ message: 'Server Error' });

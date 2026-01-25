@@ -18,6 +18,7 @@ const Explore = () => {
 
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const [totalTrips, setTotalTrips] = useState(0);
     const [filters, setFilters] = useState({
         destination: "",
         minBudget: "",
@@ -32,7 +33,7 @@ const Explore = () => {
             try {
                 const params = new URLSearchParams({
                     page,
-                    limit: 12,
+                    limit: 8,
                     sort: filters.sort,
                     destination: filters.destination,
                 });
@@ -40,8 +41,21 @@ const Explore = () => {
                 if (filters.maxBudget) params.append("maxBudget", filters.maxBudget);
 
                 const { data } = await axios.get(`${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/trips/all?${params}`);
-                setTrips(data.trips);
+
+                // ULTRA-STRICT FAIL-SAFE: Compare unix timestamps
+                const nowTimestamp = new Date().getTime();
+                const activeTrips = data.trips.filter(trip => {
+                    if (!trip.endDate) return false;
+                    const tripEndTimestamp = new Date(trip.endDate).getTime();
+                    // Keep if trip is in the future OR ends today (allow full day)
+                    // Set end of day today as threshold? 
+                    // No, user said "end date has passed", meaning current moment check is fine.
+                    return tripEndTimestamp >= nowTimestamp;
+                });
+
+                setTrips(activeTrips);
                 setTotalPages(data.pages);
+                setTotalTrips(data.total);
             } catch (error) {
                 console.error("Error fetching trips", error);
             } finally {
@@ -145,8 +159,8 @@ const Explore = () => {
                         {/* Quick Stats */}
                         <div className="flex flex-wrap justify-center gap-8 mt-12">
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-cyan-400 mb-1">{trips.length}+</div>
-                                <div className="text-sm text-gray-500">Active Trips</div>
+                                <div className="text-3xl font-bold text-cyan-400 mb-1">{totalTrips}+</div>
+                                <div className="text-sm text-gray-500">Trips</div>
                             </div>
                             <div className="text-center">
                                 <div className="text-3xl font-bold text-cyan-400 mb-1">50+</div>

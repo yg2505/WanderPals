@@ -17,6 +17,9 @@ const CreateTrip = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    // Get today's date in YYYY-MM-DD format for min date constraint
+    const today = new Date().toISOString().split('T')[0];
+
     // Effect to check for passed state
     useState(() => {
         if (location.state && location.state.destination) {
@@ -26,6 +29,18 @@ const CreateTrip = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Extra frontend validation
+        if (new Date(startDate) < new Date(today)) {
+            toast.error("Start date cannot be in the past");
+            return;
+        }
+
+        if (new Date(endDate) < new Date(startDate)) {
+            toast.error("End date must be after start date");
+            return;
+        }
+
         try {
             const config = {
                 headers: {
@@ -100,6 +115,7 @@ const CreateTrip = () => {
                                     <input
                                         type="date"
                                         required
+                                        min={today}
                                         className="input-pill w-full pl-12 bg-gray-700 border border-gray-600 text-white"
                                         value={startDate}
                                         onChange={(e) => setStartDate(e.target.value)}
@@ -115,6 +131,7 @@ const CreateTrip = () => {
                                     <input
                                         type="date"
                                         required
+                                        min={startDate || today}
                                         className="input-pill w-full pl-12 bg-gray-700 border border-gray-600 text-white"
                                         value={endDate}
                                         onChange={(e) => setEndDate(e.target.value)}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, Shield, MessageCircle, Users, Globe, Heart } from "lucide-react";
+import { MapPin, Shield, MessageCircle, Users, Globe, Heart, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const About = () => {
@@ -45,7 +45,7 @@ const About = () => {
             <section className="relative h-screen flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0">
                     <img
-                        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop"
+                        src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         alt="Mountain Lake"
                         className="w-full h-full object-cover"
                     />
@@ -209,31 +209,40 @@ const About = () => {
             </section>
 
             {/* CTA Section */}
-            <section className="py-24 px-6 bg-gray-800 relative overflow-hidden">
+            <section className="py-20 md:py-28 px-6 relative overflow-hidden">
                 <div className="absolute inset-0">
                     <img
-                        src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=2074&auto=format&fit=crop"
+                        src="https://images.unsplash.com/photo-1519414442781-fbd745c5b497?q=80&w=2082&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         alt="Adventure"
                         className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-black/40" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-gray-800/80 via-black/70 to-gray-900" />
                 </div>
 
                 <div className="relative z-10 max-w-4xl mx-auto text-center">
-                    <h2 className="text-5xl md:text-7xl font-bold mb-8">
-                        <span className="text-cyan-400">DISCOVER THE</span><br />
-                        <span className="text-white">WORLD IN A</span><br />
-                        <span className="text-cyan-400">NEW WAY</span>
+                    <h2 className="text-5xl md:text-8xl font-black mb-10 leading-tight text-white tracking-tighter">
+                        READY TO START YOUR<br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                            NEXT ADVENTURE?
+                        </span>
                     </h2>
-                    <p className="text-gray-300 text-lg mb-10 max-w-2xl mx-auto">
-                        Allow you own travel or Perfectly rest in the Archipelago Finland with the local Archipelago expert and his ship crew. Explore the absolute silence, touching untouched nature where you are - that's what you get.
+                    <p className="text-gray-300 leading-relaxed text-xl mb-12 max-w-2xl mx-auto">
+                        Join thousands of travelers who have already found their perfect companion.
+                        Your next story starts here.
                     </p>
                     <Link
                         to="/register"
-                        className="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold px-12 py-4 rounded-full text-lg transition-all shadow-lg shadow-cyan-500/50 hover:from-cyan-600 hover:to-blue-600 transform hover:scale-105 active:scale-95"
+                        className="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-12 py-5 rounded-full font-bold hover:scale-105 transition-all shadow-xl shadow-cyan-500/30 group"
                     >
                         JOIN NOW
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
+
+                    <div className="mt-16 flex items-center justify-center gap-4">
+                        <div className="h-px w-16 bg-gradient-to-r from-transparent to-cyan-400"></div>
+                        <p className="text-cyan-400 font-bold tracking-[0.2em] uppercase text-xs">The world is better together</p>
+                        <div className="h-px w-16 bg-gradient-to-l from-transparent to-cyan-400"></div>
+                    </div>
                 </div>
             </section>
 

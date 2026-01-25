@@ -7,7 +7,10 @@ const TripDetailsModal = ({ trip, onClose, onChat }) => {
 
     if (!trip) return null;
 
-    const isOwnTrip = user && trip.userId._id === user._id;
+    const isOwnTrip = user && trip && (
+        (typeof trip.userId === 'object' && trip.userId._id === user._id) ||
+        (typeof trip.userId === 'string' && trip.userId === user._id)
+    );
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
@@ -45,21 +48,21 @@ const TripDetailsModal = ({ trip, onClose, onChat }) => {
 
                 {/* Content */}
                 <div className="p-8 space-y-8">
-                    {/* User Info & Chat */}
-                    <div className="flex items-center shadow-lg justify-between p-4 bg-gray-700 rounded-2xl border border-gray-600">
-                        <div className="flex items-center space-x-4">
-                            <img
-                                src={trip.userId.avatar || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
-                                alt={trip.userId.name}
-                                className="w-12 h-12 rounded-full object-cover border-2 border-gray-600 shadow-sm"
-                            />
-                            <div>
-                                <h3 className="font-bold text-white">{trip.userId.name}</h3>
-                                <p className="text-xs text-gray-400">Trip Organizer</p>
+                    {/* User Info & Chat - Only if NOT own trip */}
+                    {!isOwnTrip && (
+                        <div className="flex items-center shadow-lg justify-between p-4 bg-gray-700 rounded-2xl border border-gray-600">
+                            <div className="flex items-center space-x-4">
+                                <img
+                                    src={trip.userId.avatar || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                                    alt={trip.userId.name}
+                                    className="w-12 h-12 rounded-full object-cover border-2 border-gray-600 shadow-sm"
+                                />
+                                <div>
+                                    <h3 className="font-bold text-white">{trip.userId.name}</h3>
+                                    <p className="text-xs text-gray-400">Trip Organizer</p>
+                                </div>
                             </div>
-                        </div>
 
-                        {!isOwnTrip && (
                             <button
                                 onClick={() => onChat(trip.userId)}
                                 className="flex items-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-3 rounded-full font-bold hover:from-cyan-600 hover:to-blue-600 transition-all shadow-lg shadow-cyan-500/50 active:scale-95"
@@ -67,8 +70,8 @@ const TripDetailsModal = ({ trip, onClose, onChat }) => {
                                 <MessageSquare className="w-4 h-4" />
                                 <span>Chat</span>
                             </button>
-                        )}
-                    </div>
+                        </div>
+                    )}
 
                     {/* Trip Details Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -103,8 +106,8 @@ const TripDetailsModal = ({ trip, onClose, onChat }) => {
                         </div>
                     </div>
 
-                    {/* Bio Section */}
-                    {trip.bio && (
+                    {/* Bio Section - Only if NOT own trip */}
+                    {!isOwnTrip && trip.bio && (
                         <div className="space-y-4">
                             <h4 className="text-sm font-bold text-gray-400 uppercase tracking-wider">Organizer's Bio</h4>
                             <p className="text-gray-300 italic border-l-4 border-cyan-400 pl-4 py-1">
